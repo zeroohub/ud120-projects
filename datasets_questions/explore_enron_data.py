@@ -16,7 +16,12 @@
 """
 
 import pickle
+import pandas as pd
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+enron_data_df = pd.DataFrame(enron_data).transpose()
 
+total_nan = enron_data_df[enron_data_df.total_payments == "NaN"]
+
+print float(len(total_nan)) / len(enron_data_df), len(total_nan)
